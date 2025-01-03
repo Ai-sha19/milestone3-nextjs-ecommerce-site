@@ -12,7 +12,7 @@ import { Product } from "../../type/type";
 
 
 
-const Home = () => {
+const Menu = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
   const [showCart, setShowCart] = useState(false);
@@ -203,4 +203,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Menu;

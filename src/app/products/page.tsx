@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const products = [
@@ -22,7 +23,7 @@ const ProductList = () => (
   }}>
     {products.map((product) => (
       <div key={product.id} style={{ textAlign: 'center' }}>
-        <img src={product.image} alt={product.name} style={{ width: '100%', borderRadius: '8px' }} />
+        <Image src={product.image} alt={product.name} style={{ width: '100%', borderRadius: '8px' }} />
         <h3>{product.name}</h3>
         <p>{product.price}</p>
         <Link

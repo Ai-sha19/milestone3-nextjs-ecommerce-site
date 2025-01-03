@@ -2,6 +2,7 @@
 import { Product } from "../../type/type";
 
 import React from 'react';
+import Image from "next/image";
 
 interface ProductCardProps extends Product {
     onAddToCart: (product: Product) => void;
@@ -16,9 +17,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
     return (
         <div className="bg-white p-4 rounded-ld shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
-            <img
+            <Image
                 src={image}
                 alt={name}
+                width={200}
+                height={200}
                 className="w-full h-56 object-cover rounded-md mb-4 transform transition-all duration-300 ease-in-out hover:scale-110"
             />
             <h3 className="text-xl font-semibold mb-2">{name}</h3>

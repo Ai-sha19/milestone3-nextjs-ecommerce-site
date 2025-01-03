@@ -1,16 +1,29 @@
-// cart/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+
+// Define the type for a cart item
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
 
 const Cart = () => {
-  const [cart, setCart] = useState(() => {
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
     const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+    if (savedCart) {
+      setCart(JSON.parse(savedCart) as CartItem[]);
+    }
+  }, []);
 
   const handleRemoveItem = (id: number) => {
-    const updatedCart = cart.filter((item: any) => item.id !== id);
+    const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
@@ -26,9 +39,9 @@ const Cart = () => {
         {cart.length === 0 ? (
           <p>Your cart is empty!</p>
         ) : (
-          cart.map((item: any) => (
+          cart.map((item) => (
             <div key={item.id} className="cart-item">
-              <img src={item.image} alt={item.name} />
+              <Image src={item.image} alt={item.name} width={300} height={200} />
               <div>
                 <h3>{item.name}</h3>
                 <p>{item.price}</p>
@@ -40,45 +53,6 @@ const Cart = () => {
         )}
       </div>
       <button onClick={handleCheckout} className="checkout-button">Checkout</button>
-      <style jsx>{`
-        .cart-container {
-          max-width: 1200px;
-          margin: auto;
-          padding: 20px;
-          text-align: center;
-        }
-        .cart-items {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 20px;
-          margin-bottom: 20px;
-        }
-        .cart-item {
-          display: flex;
-          align-items: center;
-          border: 1px solid #ddd;
-          padding: 10px;
-          border-radius: 8px;
-        }
-        .cart-item img {
-          width: 100px;
-          height: 100px;
-          object-fit: cover;
-          margin-right: 20px;
-        }
-        .checkout-button {
-          background-color: #4CAF50;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          cursor: pointer;
-          font-size: 16px;
-          border-radius: 5px;
-        }
-        .checkout-button:hover {
-          background-color: #45a049;
-        }
-      `}</style>
     </div>
   );
 };
