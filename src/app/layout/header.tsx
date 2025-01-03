@@ -1,5 +1,4 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import Image from "next/image";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { IoSearch } from "react-icons/io5";
@@ -86,7 +85,7 @@ const Header = () => {
           </Link>
           <Link
             href="/cart"
-            className="hover:text-[#5a526c] border-b-2 border-transparent hover:border-[#5a526c] pb-1"
+            className="hover:text-[#5a526c] border-b-2 border-transparent hover:border-img pb-1"
           >
             Shopping Cart
           </Link>

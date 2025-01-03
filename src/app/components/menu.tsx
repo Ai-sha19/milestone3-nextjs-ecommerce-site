@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import ProductCard from "./product-api";
 // app/components/ProductCard.tsx
@@ -109,10 +110,12 @@ const Menu = () => {
                         key={index}
                         className="flex items-center justify-center mb-6 transform transition-all duration-300 ease-in-out"
                       >
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.image}
-                          className="w-20 h-40 sm:w-24 inline-block transform duration-300 ease-in-out transform text-black"
+                          width={200}
+                          height={200}
+                          className="w-20 h-40 sm:w-24 inline-block transform duration-300 ease-in-out  text-black"
                         />
                         <span className="ml-4 text-lg font-medium text-slate-600">
                           {product.name} - ${product.price}
